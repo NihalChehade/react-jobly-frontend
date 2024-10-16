@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import UserContext from "./UserContext"; 
 import { jwtDecode } from "jwt-decode";
 
@@ -121,6 +121,7 @@ function App() {
         <Route path="/signup" element={<SignupForm />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/logout" element={<Logout />} />
+        <Route path="*" element={<Navigate to="/"/>} />
       </Routes>
     </UserContext.Provider>
   );
