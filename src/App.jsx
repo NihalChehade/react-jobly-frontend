@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Route, Routes } from "react-router-dom";
+import React, { useState, useEffect} from 'react';
+import { Route, Routes , Navigate} from "react-router-dom";
 import UserContext from "./UserContext"; 
 import { jwtDecode } from "jwt-decode";
 
@@ -25,7 +25,7 @@ function App() {
     if (storedToken) {
       try {
         JoblyApi.token = storedToken;
-        setToken(storedToken);  // If decoding is successful, set the token
+        setToken(storedToken);  
       } catch (err) {
         console.error("Invalid token in localStorage, clearing...", err);
         localStorage.removeItem("token"); // If the token is invalid, clear it
@@ -38,10 +38,8 @@ function App() {
     async function getCurrentUser() {
       if (token) {
         try {
-          console.log("changing current user useEffect");
           const { username } = jwtDecode(token); // Decode the token to get the username
           const user = await JoblyApi.getUser(username); // Fetch user details from backend
-          console.log("current user is ", user);
           setCurrentUser(user); // Set the user in state
         } catch (err) {
           console.error("Error loading user", err);
@@ -121,6 +119,7 @@ function App() {
         <Route path="/signup" element={<SignupForm />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/logout" element={<Logout />} />
+        <Route path="*" element={<Navigate to="/"/>}/>
       </Routes>
     </UserContext.Provider>
   );
