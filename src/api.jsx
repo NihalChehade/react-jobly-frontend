@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = import.meta.env.VITE_BASE_URL || "https://express-jobly-backend-hiqe.onrender.com";
+const BASE_URL = import.meta.env.VITE_BASE_URL || "http://localhost:3001";
 
 /** API Class.
  *
