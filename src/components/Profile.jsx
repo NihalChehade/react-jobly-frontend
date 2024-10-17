@@ -41,7 +41,7 @@ const Profile = () => {
   return (
     <div className="Profile">
       <h1>Profile</h1>
-      {success && <Alert color="primary">Profile updated successfully!</Alert>}
+      {success && <Alert>Profile updated successfully!</Alert>}
       {error && <Alert color="danger">{error}</Alert>}
       <Form onSubmit={handleSubmit}>
         <FormGroup>
